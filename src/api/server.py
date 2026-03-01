@@ -1,5 +1,5 @@
 """
-FastAPI application for the stock sentiment dashboard.
+FastAPI application for the stock sentiment dashboard, yay!.
 """
 
 import sys
