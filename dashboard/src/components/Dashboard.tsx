@@ -2,7 +2,7 @@ import { useState } from 'react'
 import type { TickerInfo, ArticleSentiment } from '../types'
 import { TickerSelector } from './TickerSelector'
 import { DataSourceToggle } from './DataSourceToggle'
-import { ScoreBarChart } from './ScoreBarChart'
+import { SentimentSlider } from './SentimentSlider'
 import { SentimentTimeline } from './SentimentTimeline'
 import { ScoreCard } from './ScoreCard'
 
@@ -31,8 +31,10 @@ export function Dashboard({
 }: DashboardProps) {
   const [selectedTicker, setSelectedTicker] = useState<string | null>(null)
 
+  // Show all monitored tickers that have a score (not just 'done'), so the
+  // slider stays visible during pipeline processing instead of disappearing.
   const barData = monitoredTickers
-    .filter((t) => tickerData[t]?.pipelineStep === 'done')
+    .filter((t) => tickerData[t] != null)
     .map((t) => ({ ticker: t, score: tickerData[t].score }))
 
   return (
@@ -49,7 +51,7 @@ export function Dashboard({
         <DataSourceToggle dataSource={dataSource} onToggle={onToggleSource} />
       </div>
 
-      <ScoreBarChart scores={barData} />
+      <SentimentSlider scores={barData} />
 
       <SentimentTimeline selectedTicker={selectedTicker} />
 

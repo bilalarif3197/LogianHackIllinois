@@ -6,10 +6,12 @@ import asyncio
 from dataclasses import dataclass, field
 from typing import Optional
 
-from scoring import SentimentScorer
-from embeddings import EmbeddingGenerator
-from scraper import YahooFinanceScraper
-from database import ActianVectorDB
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from scoring import SentimentScorer
+    from embeddings import EmbeddingGenerator
+    from scraper import YahooFinanceScraper
+    from database import ActianVectorDB
 
 
 @dataclass
@@ -33,10 +35,10 @@ class TickerState:
 @dataclass
 class AppState:
     """Global application state shared across routes, WebSocket, and engine."""
-    scorer: Optional[SentimentScorer] = None
-    embedding_generator: Optional[EmbeddingGenerator] = None
-    scraper: Optional[YahooFinanceScraper] = None
-    db: Optional[ActianVectorDB] = None
+    scorer: Optional[object] = None
+    embedding_generator: Optional[object] = None
+    scraper: Optional[object] = None
+    db: Optional[object] = None
     tickers: dict = field(default_factory=dict)             # ticker -> TickerState
     data_source: str = "mock"                               # "mock" or "live"
     monitoring_active: bool = False
