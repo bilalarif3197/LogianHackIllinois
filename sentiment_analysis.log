@@ -453,3 +453,98 @@ connection to server at "localhost" (127.0.0.1), port 5432 failed: Connection re
 2026-02-28 19:43:17,645 - cortex.client - INFO - Disconnected from Cortex
 2026-02-28 19:43:17,645 - database - INFO - VectorAI DB connection closed
 2026-02-28 19:43:17,645 - __main__ - INFO - Pipeline cleanup completed
+2026-02-28 22:59:48,504 - __main__ - INFO - Initializing Stock Sentiment Pipeline
+2026-02-28 22:59:48,504 - embeddings - INFO - Loading embedding model: all-MiniLM-L6-v2
+2026-02-28 22:59:48,522 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: mps
+2026-02-28 22:59:48,522 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: all-MiniLM-L6-v2
+2026-02-28 22:59:48,606 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:48,607 - huggingface_hub.utils._http - WARNING - Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
+2026-02-28 22:59:48,617 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:48,659 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:48,669 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:48,712 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config_sentence_transformers.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:48,722 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config_sentence_transformers.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:48,764 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/README.md "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:48,775 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/README.md "HTTP/1.1 200 OK"
+2026-02-28 22:59:48,815 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/modules.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:48,826 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/modules.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:48,866 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/sentence_bert_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:48,876 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/sentence_bert_config.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:48,919 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/adapter_config.json "HTTP/1.1 404 Not Found"
+2026-02-28 22:59:48,961 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:48,974 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:49,104 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:49,114 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/config.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:49,151 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:49,162 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:49,208 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-28 22:59:49,255 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-28 22:59:49,346 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2/resolve/main/1_Pooling/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:49,357 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/sentence-transformers/all-MiniLM-L6-v2/c9745ed1d9f207416be6d2e6f8de32d1f16199bf/1_Pooling%2Fconfig.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:49,405 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/sentence-transformers/all-MiniLM-L6-v2 "HTTP/1.1 200 OK"
+2026-02-28 22:59:49,788 - embeddings - INFO - Model loaded. Embedding dimension: 384
+2026-02-28 22:59:49,788 - scoring - INFO - Loading sentiment model: ProsusAI/finbert
+2026-02-28 22:59:49,843 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:49,855 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ProsusAI/finbert/4556d13015211d73dccd3fdd39d39232506f3e43/config.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:49,866 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/ProsusAI/finbert/4556d13015211d73dccd3fdd39d39232506f3e43/config.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:49,905 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/tokenizer_config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:49,916 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ProsusAI/finbert/4556d13015211d73dccd3fdd39d39232506f3e43/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:49,927 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/ProsusAI/finbert/4556d13015211d73dccd3fdd39d39232506f3e43/tokenizer_config.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:49,971 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/tree/main/additional_chat_templates?recursive=false&expand=false "HTTP/1.1 404 Not Found"
+2026-02-28 22:59:50,011 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/tree/main?recursive=true&expand=false "HTTP/1.1 200 OK"
+2026-02-28 22:59:50,059 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/vocab.txt "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:50,069 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ProsusAI/finbert/4556d13015211d73dccd3fdd39d39232506f3e43/vocab.txt "HTTP/1.1 200 OK"
+2026-02-28 22:59:50,082 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/ProsusAI/finbert/4556d13015211d73dccd3fdd39d39232506f3e43/vocab.txt "HTTP/1.1 200 OK"
+2026-02-28 22:59:50,134 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/tokenizer.json "HTTP/1.1 404 Not Found"
+2026-02-28 22:59:50,179 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/added_tokens.json "HTTP/1.1 404 Not Found"
+2026-02-28 22:59:50,221 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/special_tokens_map.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:50,233 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ProsusAI/finbert/4556d13015211d73dccd3fdd39d39232506f3e43/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:50,245 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/resolve-cache/models/ProsusAI/finbert/4556d13015211d73dccd3fdd39d39232506f3e43/special_tokens_map.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:50,290 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/chat_template.jinja "HTTP/1.1 404 Not Found"
+2026-02-28 22:59:50,349 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/config.json "HTTP/1.1 307 Temporary Redirect"
+2026-02-28 22:59:50,361 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/api/resolve-cache/models/ProsusAI/finbert/4556d13015211d73dccd3fdd39d39232506f3e43/config.json "HTTP/1.1 200 OK"
+2026-02-28 22:59:50,409 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-02-28 22:59:50,450 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-02-28 22:59:50,495 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/pytorch_model.bin "HTTP/1.1 302 Found"
+2026-02-28 22:59:50,732 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/xet-read-token/4556d13015211d73dccd3fdd39d39232506f3e43 "HTTP/1.1 200 OK"
+2026-02-28 23:00:03,214 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/main/model.safetensors "HTTP/1.1 404 Not Found"
+2026-02-28 23:00:03,956 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert "HTTP/1.1 200 OK"
+2026-02-28 23:00:04,166 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/commits/main "HTTP/1.1 200 OK"
+2026-02-28 23:00:04,236 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/discussions?p=0 "HTTP/1.1 200 OK"
+2026-02-28 23:00:04,317 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/commits/refs%2Fpr%2F29 "HTTP/1.1 200 OK"
+2026-02-28 23:00:04,370 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/refs%2Fpr%2F29/model.safetensors.index.json "HTTP/1.1 404 Not Found"
+2026-02-28 23:00:04,416 - httpx - INFO - HTTP Request: HEAD https://huggingface.co/ProsusAI/finbert/resolve/refs%2Fpr%2F29/model.safetensors "HTTP/1.1 302 Found"
+2026-02-28 23:00:04,522 - scoring - INFO - Sentiment model loaded successfully
+2026-02-28 23:00:05,388 - database - INFO - Initialized ActianVectorDB targeting localhost:50051
+2026-02-28 23:00:05,394 - cortex.transport.pool - INFO - Creating connection pool to localhost:50051 with 3 channels
+2026-02-28 23:00:05,420 - cortex.async_client - INFO - Connected to Cortex at localhost:50051
+2026-02-28 23:00:05,432 - cortex.client - INFO - Connected to Cortex at localhost:50051
+2026-02-28 23:00:05,488 - httpx - INFO - HTTP Request: GET https://huggingface.co/api/models/ProsusAI/finbert/xet-read-token/7db323f79b751944bcfa66298ec06977e4518306 "HTTP/1.1 200 OK"
+2026-02-28 23:00:05,748 - database - INFO - Connected to VectorAI DB: VDSS 1.0.0 / VDE 1.0.0
+2026-02-28 23:00:06,001 - database - INFO - Created collection 'news_embeddings' (dim=384, metric=COSINE)
+2026-02-28 23:00:06,001 - __main__ - INFO - Pipeline initialized successfully
+2026-02-28 23:00:06,001 - __main__ - INFO - Starting sentiment analysis for NVDA
+2026-02-28 23:00:06,001 - __main__ - INFO - Step 1: Scraping news articles
+2026-02-28 23:00:06,002 - scraper - INFO - Fetching URL: https://feeds.finance.yahoo.com/rss/2.0/headline?s=NVDA&region=US&lang=en-US
+2026-02-28 23:00:06,425 - scraper - INFO - Scraped 20 articles from RSS feed for NVDA
+2026-02-28 23:00:06,425 - scraper - INFO - Successfully scraped 20 articles for NVDA
+2026-02-28 23:00:06,425 - __main__ - INFO - Scraped 10 articles
+2026-02-28 23:00:06,425 - __main__ - INFO - Step 2: Generating embeddings
+2026-02-28 23:00:06,425 - embeddings - INFO - Generating embeddings for 10 articles
+2026-02-28 23:00:08,233 - embeddings - INFO - Generated embeddings with shape: (10, 384)
+2026-02-28 23:00:08,233 - __main__ - INFO - Generated embeddings with shape (10, 384)
+2026-02-28 23:00:08,233 - __main__ - INFO - Step 3: Storing embeddings in VectorAI DB
+2026-02-28 23:00:08,311 - database - INFO - Inserted 10 embeddings for NVDA
+2026-02-28 23:00:08,311 - __main__ - INFO - Inserted 10 records into database
+2026-02-28 23:00:08,311 - __main__ - INFO - Step 4: Analyzing sentiment
+2026-02-28 23:00:08,311 - scoring - INFO - Analyzing sentiment for 10 articles
+2026-02-28 23:00:09,168 - scoring - INFO - Completed sentiment analysis for 10 articles
+2026-02-28 23:00:09,168 - __main__ - INFO - Step 5: Calculating aggregate score
+2026-02-28 23:00:09,169 - scoring - INFO - Aggregate sentiment score: -0.0125
+2026-02-28 23:00:09,169 - __main__ - INFO - Step 6: Generating tip sheet
+2026-02-28 23:00:09,169 - __main__ - INFO - Pipeline completed successfully for NVDA
+2026-02-28 23:00:09,170 - cortex.transport.pool - INFO - Closing connection pool (3 channels)
+2026-02-28 23:00:09,170 - cortex.async_client - INFO - Disconnected from Cortex
+2026-02-28 23:00:09,170 - cortex.client - INFO - Disconnected from Cortex
+2026-02-28 23:00:09,170 - database - INFO - VectorAI DB connection closed
+2026-02-28 23:00:09,170 - __main__ - INFO - Pipeline cleanup completed
