@@ -24,9 +24,14 @@ import time
 import random
 import logging
 import argparse
+import hashlib
+import pickle
 from typing import Dict, List, Optional, Tuple
 
 import numpy as np
+
+CACHE_DIR  = os.path.join(os.path.dirname(__file__), "..", ".cache")
+CACHE_FILE = os.path.join(CACHE_DIR, "embeddings.pkl")
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
@@ -128,17 +133,30 @@ class SignalEngine:
         Pre-embed all articles in the feed and store embeddings in Actian
         (if available) and the in-memory store.
 
-        This is the one-time seeding step that enables microsecond fast-path
-        lookups — no inference happens during fast_path() after this.
+        Embeddings are cached to disk (.cache/embeddings.pkl) and keyed by
+        a hash of the feed content. Subsequent runs load from cache instantly
+        unless the feed has changed.
         """
         total_articles = sum(len(v) for v in feed.values())
+        feed_hash = self._hash_feed(feed)
+
+        # Try loading from disk cache
+        if os.path.exists(CACHE_FILE):
+            with open(CACHE_FILE, "rb") as f:
+                cached = pickle.load(f)
+            if cached.get("hash") == feed_hash:
+                self._store = cached["store"]
+                print(f"Loaded {total_articles} embeddings from cache (0.0s)\n")
+                return
+
+        # Cache miss — compute embeddings
         print(f"Seeding {total_articles} articles across {len(feed)} tickers...",
               flush=True)
         t0 = time.perf_counter()
 
         for ticker, articles in feed.items():
             embeddings = self.embedder.generate_embeddings(articles)
-            self._store[ticker] = embeddings  # in-memory mirror
+            self._store[ticker] = embeddings
 
             if self._db:
                 try:
@@ -147,7 +165,23 @@ class SignalEngine:
                     logger.warning(f"Actian insert failed for {ticker}: {e}")
 
         elapsed = time.perf_counter() - t0
-        print(f"Seeded {total_articles} embeddings in {elapsed:.1f}s\n")
+        print(f"Seeded {total_articles} embeddings in {elapsed:.1f}s")
+
+        # Save to disk cache
+        os.makedirs(CACHE_DIR, exist_ok=True)
+        with open(CACHE_FILE, "wb") as f:
+            pickle.dump({"hash": feed_hash, "store": self._store}, f)
+        print(f"Saved to cache ({CACHE_FILE})\n")
+
+    @staticmethod
+    def _hash_feed(feed: Dict[str, List[Dict]]) -> str:
+        """MD5 of all headlines in feed order — used to invalidate the cache."""
+        content = "".join(
+            art["headline"]
+            for articles in feed.values()
+            for art in articles
+        )
+        return hashlib.md5(content.encode()).hexdigest()
 
     # ── Fast Path ─────────────────────────────────────────────────────────────
 
