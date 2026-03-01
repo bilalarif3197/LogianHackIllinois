@@ -28,5 +28,9 @@ env/
 .vscode/
 .idea/
 
+# Dashboard frontend
+dashboard/node_modules/
+dashboard/dist/
+
 # macOS
 .DS_Store

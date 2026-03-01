@@ -164,6 +164,7 @@ class ActianVectorDB:
                 COLLECTION_NAME,
                 query=query_vector.tolist(),
                 top_k=top_k,
+                with_payload=True,
             )
             logger.info(f"Search returned {len(results)} results")
             return results
